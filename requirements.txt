@@ -1,0 +1,25 @@
+# SO-101 Robot Arms Teleoperation Requirements
+# Generated: August 5, 2025
+
+# Core LeRobot Framework
+lerobot[pygame-dep,transformers-dep]
+
+# Required Dependencies
+torch>=2.2.1
+torchvision>=0.21.0
+opencv-python-headless>=4.9.0
+pyserial>=3.5
+pynput>=1.7.7
+wandb>=0.20.0
+pygame>=2.5.1
+transformers>=4.50.3,<4.52.0
+
+# Optional but Recommended
+numpy>=1.24.0
+matplotlib>=3.7.0
+jupyter>=1.0.0
+
+# Development Tools (Optional)
+pytest>=7.0.0
+black>=23.0.0
+flake8>=6.0.0 

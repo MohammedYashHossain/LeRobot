@@ -1,0 +1,87 @@
+# SO-101 Robot Arms Hardware Specifications
+# Generated: August 5, 2025
+
+## HARDWARE REQUIREMENTS
+
+### Robot Arms
+- **Model**: SO-101 (Leader and Follower)
+- **Manufacturer**: Custom/DIY build
+- **Degrees of Freedom**: 6 DOF (5 joints + gripper)
+- **Material**: 3D printed components with metal joints
+
+### Motors
+- **Type**: Feetech Smart Servos
+- **Model**: STS3215 (internal model number 777)
+- **Quantity**: 12 total (6 per arm)
+- **Power**: 12V DC
+- **Communication**: Serial (RS485)
+- **Control**: Position control with feedback
+
+### Motor Configuration
+#### Leader Arm (COM3)
+1. **Shoulder Pan** - ID 1, sts3215, Degrees mode
+2. **Shoulder Lift** - ID 2, sts3215, Degrees mode
+3. **Elbow Flex** - ID 3, sts3215, Degrees mode
+4. **Wrist Flex** - ID 4, sts3215, Degrees mode
+5. **Wrist Roll** - ID 5, sts3215, Degrees mode
+6. **Gripper** - ID 6, sts3215, Range 0-100 mode
+
+#### Follower Arm (COM4)
+1. **Shoulder Pan** - ID 1, sts3215, Degrees mode
+2. **Shoulder Lift** - ID 2, sts3215, Degrees mode
+3. **Elbow Flex** - ID 3, sts3215, Degrees mode
+4. **Wrist Flex** - ID 4, sts3215, Degrees mode
+5. **Wrist Roll** - ID 5, sts3215, Degrees mode
+6. **Gripper** - ID 6, sts3215, Range 0-100 mode
+
+### Communication Hardware
+- **USB to Serial Converters**: 2x (one per arm)
+- **Cables**: USB-C to USB-A
+- **Ports**: COM3 (Leader), COM4 (Follower)
+- **Baudrate**: 1,000,000 bps
+- **Protocol**: Feetech serial communication
+
+### Power Requirements
+- **Voltage**: 12V DC
+- **Current**: ~2A per arm (estimated)
+- **Power Supply**: 12V DC power supply
+- **Connections**: Barrel jack or screw terminals
+
+### Physical Setup
+- **Mounting**: Table-mounted or stand-mounted
+- **Workspace**: Adequate space for full range of motion
+- **Safety**: Emergency stop capability recommended
+- **Stability**: Secure mounting to prevent movement
+
+### Software Requirements
+- **Operating System**: Windows 10/11, Linux, macOS
+- **Python**: 3.10 or higher
+- **LeRobot Framework**: Latest version
+- **Dependencies**: See requirements.txt
+
+### Performance Specifications
+- **Teleoperation Frequency**: 58-59 Hz
+- **Response Time**: ~17ms
+- **Update Rate**: 60 FPS
+- **Position Accuracy**: Motor encoder resolution
+- **Repeatability**: Motor specification dependent
+
+### Safety Considerations
+- **Emergency Stop**: Hardware emergency stop recommended
+- **Position Limits**: Software-enforced limits
+- **Torque Limits**: Motor internal protection
+- **Collision Detection**: Manual supervision required
+- **Workspace Awareness**: Clear workspace boundaries
+
+### Maintenance
+- **Lubrication**: Periodic joint lubrication
+- **Calibration**: Re-calibrate if hardware changes
+- **Motor Inspection**: Check for wear and damage
+- **Cable Management**: Ensure cables don't interfere with motion
+
+### Notes
+- This configuration is specific to SO-101 robot arms
+- Motor IDs must be exactly 1-6 for proper operation
+- Calibration data is hardware-specific
+- Port numbers may change on different computers
+- Always test connections before running teleoperation 

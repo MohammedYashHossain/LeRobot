@@ -1,0 +1,46 @@
+# SO-101 Robot Arms Motor Configuration
+# Generated: August 5, 2025
+
+## LEADER ARM (COM3)
+### Motor Specifications
+- **Shoulder Pan**: ID 1, Model: sts3215 (777), Mode: Degrees
+- **Shoulder Lift**: ID 2, Model: sts3215 (777), Mode: Degrees
+- **Elbow Flex**: ID 3, Model: sts3215 (777), Mode: Degrees
+- **Wrist Flex**: ID 4, Model: sts3215 (777), Mode: Degrees
+- **Wrist Roll**: ID 5, Model: sts3215 (777), Mode: Degrees
+- **Gripper**: ID 6, Model: sts3215 (777), Mode: Range 0-100
+
+### Calibration Data (Leader Arm)
+- **Shoulder Pan**: MIN=1195, POS=2101, MAX=3561
+- **Shoulder Lift**: MIN=805, POS=822, MAX=3241
+- **Elbow Flex**: MIN=748, POS=2976, MAX=3004
+- **Wrist Flex**: MIN=755, POS=772, MAX=3088
+- **Wrist Roll**: MIN=957, POS=2153, MAX=3297
+- **Gripper**: MIN=2014, POS=2050, MAX=3396
+
+## FOLLOWER ARM (COM4)
+### Motor Specifications
+- **Shoulder Pan**: ID 1, Model: sts3215 (777), Mode: Degrees
+- **Shoulder Lift**: ID 2, Model: sts3215 (777), Mode: Degrees
+- **Elbow Flex**: ID 3, Model: sts3215 (777), Mode: Degrees
+- **Wrist Flex**: ID 4, Model: sts3215 (777), Mode: Degrees
+- **Wrist Roll**: ID 5, Model: sts3215 (777), Mode: Degrees
+- **Gripper**: ID 6, Model: sts3215 (777), Mode: Range 0-100
+
+### Communication Settings
+- **Baudrate**: 1,000,000
+- **Protocol**: Feetech serial communication
+- **Timeout**: 0.1 seconds
+- **Connection**: USB serial (COM3/COM4)
+
+### Performance Metrics
+- **Teleoperation Frequency**: 58-59 Hz
+- **Response Time**: ~17ms
+- **Update Rate**: 60 FPS
+- **Connection Stability**: Excellent
+
+### Notes
+- All motors are sts3215 model (internal model number 777)
+- Motor IDs must be exactly 1-6 for both arms
+- Gripper uses Range 0-100 mode, others use Degrees mode
+- Calibration data is specific to this hardware setup 
