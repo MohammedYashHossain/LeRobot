@@ -32,7 +32,7 @@ cp -r calibration/ ~/.cache/huggingface/lerobot/
 
 ### Run Teleoperation
 ```bash
-python -m lerobot.teleoperate --teleop.type=so101_leader --teleop.port=COM3 --robot.type=so101_follower --robot.port=COM4
+python -m lerobot.teleoperate --teleop.type=so101_leader --teleop.port=COM3 --teleop.id=my_awesome_leader_arm --robot.type=so101_follower --robot.port=COM4 --robot.id=my_awesome_follower_arm
 ```
 
 ## 📁 Repository Structure
@@ -42,10 +42,12 @@ LeRobot/
 ├── calibration/                 # Calibration data
 │   ├── robots/
 │   │   └── so101_follower/
-│   │       └── None.json       # Follower arm calibration
+│   │       ├── follower_arm.json    # Follower arm calibration (updated)
+│   │       └── None.json            # Default follower arm calibration
 │   └── teleoperators/
 │       └── so101_leader/
-│           └── None.json       # Leader arm calibration
+│           ├── leader_arm.json      # Leader arm calibration (updated)
+│           └── None.json            # Default leader arm calibration
 ├── config/                      # Configuration files
 │   ├── motor_config.txt        # Motor specifications
 │   └── hardware_specs.txt      # Hardware requirements
@@ -73,6 +75,24 @@ The calibration files contain:
 - **Safety limits**
 - **Normalization parameters**
 
+### Updated Calibration Results (2025-08-06)
+
+**Leader Arm (COM3) - my_awesome_leader_arm:**
+- shoulder_pan: 862 → 2089 → 2858
+- shoulder_lift: 941 → 954 → 3251
+- elbow_flex: 643 → 2828 → 2892
+- wrist_flex: 874 → 2927 → 3227
+- wrist_roll: 911 → 2038 → 3233
+- gripper: 1910 → 1940 → 3259
+
+**Follower Arm (COM4) - my_awesome_follower_arm:**
+- shoulder_pan: 789 → 1988 → 2750
+- shoulder_lift: 878 → 925 → 3251
+- elbow_flex: 723 → 2935 → 2976
+- wrist_flex: 740 → 2909 → 3233
+- wrist_roll: 1017 → 1953 → 3274
+- gripper: 2043 → 2050 → 3467
+
 ## 🎮 Usage
 
 ### Testing Connections
@@ -84,13 +104,22 @@ python scripts/test_connections.py --arm=leader --port=COM3
 python scripts/test_connections.py --arm=follower --port=COM4
 ```
 
-### Setup Motors
+### Setup Motors (Motor ID Reset)
 ```bash
 # Setup leader arm motors
 python -m lerobot.setup_motors --teleop.type=so101_leader --teleop.port=COM3
 
 # Setup follower arm motors
 python -m lerobot.setup_motors --robot.type=so101_follower --robot.port=COM4
+```
+
+### Calibration
+```bash
+# Calibrate leader arm
+python -m lerobot.calibrate --teleop.type=so101_leader --teleop.port=COM3 --teleop.id=my_awesome_leader_arm
+
+# Calibrate follower arm
+python -m lerobot.calibrate --robot.type=so101_follower --robot.port=COM4 --robot.id=my_awesome_follower_arm
 ```
 
 ### Find Ports
@@ -102,6 +131,7 @@ python -m lerobot.find_port
 - **Teleoperation Frequency**: ~58-59 Hz
 - **Response Time**: ~17ms
 - **Connection**: Stable USB serial communication
+- **Motor ID Reset**: Successfully completed for both arms
 
 ## 🔍 Troubleshooting
 
@@ -109,6 +139,14 @@ python -m lerobot.find_port
 1. **Port not found**: Run `python -m lerobot.find_port`
 2. **Motors not detected**: Check USB connections and power
 3. **Calibration errors**: Re-run motor setup process
+4. **Motor ID conflicts**: Use setup_motors command to reset IDs
+
+### Motor ID Reset Process
+If motor IDs are swapped or incorrect:
+1. Run `python -m lerobot.setup_motors` for the affected arm
+2. Follow the prompts to reset each motor ID
+3. Recalibrate the arm after ID reset
+4. Test teleoperation
 
 ### Port Changes
 If COM ports change on different computers:
@@ -121,6 +159,8 @@ If COM ports change on different computers:
 - Motor IDs must match exactly (1-6)
 - Same motor models (sts3215) required
 - USB connections must be stable
+- **Follower Arm**: COM4, **Leader Arm**: COM3
+- Motor ID reset successfully resolved wrist_roll/gripper swap issue
 
 ## 🤝 Contributing
 This configuration is specific to SO-101 robot arms with Feetech motors. For different hardware, adjust motor IDs, models, and calibration data accordingly.
